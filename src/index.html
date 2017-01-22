@@ -1,0 +1,55 @@
+{% set title = "Twig.js templating test" %}
+{% set pageTitle = "<span>Use Twig from the start!</span>" %}
+{% set benefits = ["Fast!", "Easy!", "Efficient!"] %}
+
+{% set news = [
+	{'title': 'Title news1', 'body': 'Body news1'}, 
+	{'title': 'Title news2', 'body': 'Body news2'},
+	{'title': 'Title news3', 'body': ''}
+] %}
+
+<!doctype html>
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9 ie8" lang="<%- lang %>"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10 ie9" lang="<%- lang %>"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ lang }}"> <!--<![endif]-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	{% include "layout/header/header.html" %}
+
+    <h1>{{ pageTitle }}</h1>
+
+    <ul>
+        {% for value in benefits %}
+            <li>{{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="block-news">
+    	<div class="block-news__item">
+    		{% for newsItem in news %}
+	            <h2>{{ newsItem.title }}</h2>
+	            
+            	{% if newsItem.body|length > 0 %}
+            		<p>
+	            		{{ newsItem.body }}
+	            	</p>
+            	{% endif %}
+	            
+	        {% endfor %}
+    	</div>
+    </div>
+
+</body>
+</html>
